@@ -103,6 +103,8 @@ const iconUrl = {
 
 function App() {
 
+  const [currentCategory, setCurrentCategory] = useState("")
+
   //NOTE get persistant from local storage
   const f_hairPath_Persistant       = localStorage.getItem('f_hairPath_Persistant');
   const f_bodyPath_Persistant       = localStorage.getItem('f_bodyPath_Persistant');
@@ -148,82 +150,52 @@ function App() {
   const f_shirt__count = 9;
   const f_background__count = 3;
 
+  useEffect(()=>{
+    handleCategory(currentCategory)
+  },[currentCategory])
+
  
   function handleCategory(isItem){
-      console.log("selected category = "+isItem);
-      if(isItem == "Is_Hair_Open"){
-        setIs_Hair_Open(true)
-        setIs_EyeBrow_Open(false);
-        setIs_Eyes_Open(false);
-        setIs_Nose_Open(false);
-        setIs_Mouth_Open(false);
-        setIs_Shirt_Open(false);
-        setIs_Background_Open(false);
-      }else if(isItem == "Is_EyeBrow_Open"){
-        setIs_Hair_Open(false)
-        setIs_EyeBrow_Open(true);
-        setIs_Eyes_Open(false);
-        setIs_Nose_Open(false);
-        setIs_Mouth_Open(false);
-        setIs_Shirt_Open(false);
-        setIs_Background_Open(false);
-      }else if(isItem == "Is_Eyes_Open"){
-        setIs_Hair_Open(false)
-        setIs_EyeBrow_Open(false);
-        setIs_Eyes_Open(true);
-        setIs_Nose_Open(false);
-        setIs_Mouth_Open(false);
-        setIs_Shirt_Open(false);
-        setIs_Background_Open(false);
-      }else if(isItem == "Is_Nose_Open"){
-        setIs_Hair_Open(false)
-        setIs_EyeBrow_Open(false);
-        setIs_Eyes_Open(false);
-        setIs_Nose_Open(true);
-        setIs_Mouth_Open(false);
-        setIs_Shirt_Open(false);
-        setIs_Background_Open(false);
-      }else if(isItem == "Is_Mouth_Open"){
-        setIs_Hair_Open(false)
-        setIs_EyeBrow_Open(false);
-        setIs_Eyes_Open(false);
-        setIs_Nose_Open(false);
-        setIs_Mouth_Open(true);
-        setIs_Shirt_Open(false);
-        setIs_Background_Open(false);
-      }else if(isItem == "Is_Shirt_Open"){
-        setIs_Hair_Open(false)
-        setIs_EyeBrow_Open(false);
-        setIs_Eyes_Open(false);
-        setIs_Nose_Open(false);
-        setIs_Mouth_Open(false);
-        setIs_Shirt_Open(true);
-        setIs_Background_Open(false);
-      }else if(isItem == "Is_Background_Open"){
-        setIs_Hair_Open(false)
-        setIs_EyeBrow_Open(false);
-        setIs_Eyes_Open(false);
-        setIs_Nose_Open(false);
-        setIs_Mouth_Open(false);
-        setIs_Shirt_Open(false);
-        setIs_Background_Open(true);
+      setIs_Hair_Open(false)
+      setIs_EyeBrow_Open(false);
+      setIs_Eyes_Open(false);
+      setIs_Nose_Open(false);
+      setIs_Mouth_Open(false);
+      setIs_Shirt_Open(false);
+      setIs_Background_Open(false);
+
+      switch(isItem){
+        case "Is_Hair_Open":
+          setIs_Hair_Open(true);
+          break;
+        case "Is_EyeBrow_Open":
+          setIs_EyeBrow_Open(true);
+          break;
+        case "Is_Eyes_Open":
+          setIs_Eyes_Open(true);
+          break;
+        case "Is_Nose_Open":
+          setIs_Nose_Open(true);
+          break;
+        case "Is_Mouth_Open":
+          setIs_Mouth_Open(true);
+          break;
+        case "Is_Shirt_Open":
+          setIs_Shirt_Open(true);
+          break;
+        case "Is_Background_Open":
+          setIs_Background_Open(true);
+          break;
+        default:
+          setIs_Hair_Open(true);
       }
   }
 
-  useEffect(()=>{
-    handleCategory("Is_Hair_Open");
-  },[])
  
-  useEffect(()=>{
-    console.log("trigger handle category")
-    console.log("isOpenArray = ", isOpenArray);
-  },isOpenArray)
 
   useEffect(()=>{
     renderImage();
     savePersistant();
-    console.log('trigger Create image')
-    console.log("persistantArray = ", persistantArray)
   },[f_shirtPath,f_hairPath,f_eye_browPath,f_eyesPath,f_nosePath,f_mouthPath,f_backgroundPath])
 
   
@@ -421,15 +393,7 @@ function App() {
     
     ]
 
-  const categoryButtonElement = <>
-     <CategoryMenuButton title="ຜົມ" imgIconUrl={iconUrl.hair_icon} isCategoryActive={true} handleClick={()=>handleCategory("Is_Hair_Open")}/>
-     <CategoryMenuButton title="ຄິ້ວ" imgIconUrl={iconUrl.eye_brow_icon} handleClick={()=>handleCategory("Is_EyeBrow_Open")}/>
-     <CategoryMenuButton title="ຕາ" imgIconUrl={iconUrl.eyes_icon} handleClick={()=>handleCategory("Is_Eyes_Open")}/>
-     <CategoryMenuButton title="ດັງ" imgIconUrl={iconUrl.nose_icon} handleClick={()=>handleCategory("Is_Nose_Open")}/>
-     <CategoryMenuButton title="ປາກ" imgIconUrl={iconUrl.mouth_icon} handleClick={()=>handleCategory("Is_Mouth_Open")}/>
-     <CategoryMenuButton title="ເສື້ອ" imgIconUrl={iconUrl.shirt_icon} handleClick={()=>handleCategory("Is_Shirt_Open")}/>
-     <CategoryMenuButton title="ພື້ນຫຼັງ" imgIconUrl={iconUrl.background_icon} handleClick={()=>handleCategory("Is_Background_Open")}/>
-  </>
+
 
   const hairElement = <>
                         <ItemMenuButton imgIconUrl={hairUrl.hair_1} handleClick={()=>set_f_HairPath(hairUrl.hair_1)}/>
@@ -558,7 +522,13 @@ function App() {
                    {/* tools */}
                    {/* category menu  button*/}
                    <div className="container border-l-2 border-black flex gap-1 p-1 mb-2 flex-nowrap overflow-y-auto">
-                      {categoryButtonElement}
+                    <CategoryMenuButton title="Is_Hair_Open" currentCategory={currentCategory} imgIconUrl={iconUrl.hair_icon} isCategoryActive={true} handleClick={()=>setCurrentCategory("Is_Hair_Open")}/>
+                    <CategoryMenuButton title="Is_EyeBrow_Open" currentCategory={currentCategory} imgIconUrl={iconUrl.eye_brow_icon} handleClick={()=>setCurrentCategory("Is_EyeBrow_Open")}/>
+                    <CategoryMenuButton title="Is_Eyes_Open" currentCategory={currentCategory} imgIconUrl={iconUrl.eyes_icon} handleClick={()=>setCurrentCategory("Is_Eyes_Open")}/>
+                    <CategoryMenuButton title="Is_Nose_Open" currentCategory={currentCategory} imgIconUrl={iconUrl.nose_icon} handleClick={()=>setCurrentCategory("Is_Nose_Open")}/>
+                    <CategoryMenuButton title="Is_Mouth_Open" currentCategory={currentCategory} imgIconUrl={iconUrl.mouth_icon} handleClick={()=>setCurrentCategory("Is_Mouth_Open")}/>
+                    <CategoryMenuButton title="Is_Shirt_Open" currentCategory={currentCategory} imgIconUrl={iconUrl.shirt_icon} handleClick={()=>setCurrentCategory("Is_Shirt_Open")}/>
+                    <CategoryMenuButton title="Is_Background_Open" currentCategory={currentCategory} imgIconUrl={iconUrl.background_icon} handleClick={()=>setCurrentCategory("Is_Background_Open")}/>
                    </div>
                    
                    {/* //NOTE menu button  */}
