@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import CategoryMenuButton from "./components/CategoryMenuButton";
+import GithubButton from "./components/GithubButton";
 import ItemMenuButton from "./components/ItemMenuButton";
 import KaidaoButton from "./components/KaidaoButton";
 import "./index.css"
@@ -373,7 +374,7 @@ function App() {
 
   const kaidaoButtonData = [
     {
-    svgIcon: <><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    svgIcon: <><svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
     </svg></>,
         title: 'Generate',
@@ -382,7 +383,7 @@ function App() {
         }
     },
     {
-    svgIcon: <><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    svgIcon: <><svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
     </svg></>,
     title: 'Save',
@@ -481,26 +482,30 @@ function App() {
 
   return (
     <div>
-          <header className="flex justify-between pt-3 pb-2 px-4 text-black" >
-            <div className="logo flex gap-2">
+          <header className="flex justify-between px-4 pt-3 pb-2 text-black" >
+            <div className="flex gap-2 logo">
               <a href="/"><img src="./images/kaidao-logo-stroke-xl.png" alt="kaidao logo | kaidao icon" width={50}/></a>
               <a href="/" className="font-serif text-xl">kaidao studio</a>
             </div>
-            <ul className="hidden lg:flex gap-4">
-              <li><a href="#" className="font-serif">Our Team</a></li>
-              <li><a href="#" className="font-serif">Social Media</a></li>
-            </ul>
+            
+            <div className="flex">
+                <GithubButton/>
+                <ul className="hidden gap-4 lg:flex">
+                  <li><a href="#" className="font-serif">Our Team</a></li>
+                  <li><a href="#" className="font-serif">Social Media</a></li>
+                </ul>
 
-            <button className="lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-            </button>
+                <button className="lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+                </button>
+            </div>
           </header>
 
-          <main className="container mx-auto pt-3 md:px-36 md:pt-2">
+          <main className="container pt-3 mx-auto md:px-36 md:pt-2">
            {/* //TODO  ------------------------- actions button ------------------------- */}
-           <div className="flex gap-4 justify-between pb-3 lg:justify-end">
+           <div className="flex justify-between gap-4 pb-3 lg:justify-end">
                     {
                       kaidaoButtonData.map((button, index)=>{
                         return (
@@ -513,15 +518,15 @@ function App() {
 
             </div>
               {/* tools and canvas */}
-              <div className="flex flex-col lg:flex-row justify-center">
-                  <div className="border-2 border-black  border-b-0 flex justify-center p-3 lg:border-r-0 lg:border-b-2">
+              <div className="flex flex-col justify-center lg:flex-row">
+                  <div className="flex justify-center p-3 border-2 border-b-0 border-black lg:border-r-0 lg:border-b-2">
                     <canvas ref={canvasRef} className="border-2 border-black" width={100} height={100}></canvas>
                   </div>
                  {/* tools and actions button container */}
-                 <div className="border-2 border-black p-3 flex flex-col justify-start align-middle items-center grow  lg:w-2/6">
+                 <div className="flex flex-col items-center justify-start p-3 align-middle border-2 border-black grow lg:w-2/6">
                    {/* tools */}
                    {/* category menu  button*/}
-                   <div className="container border-l-2 border-black flex gap-1 p-1 mb-2 flex-nowrap overflow-y-auto">
+                   <div className="container flex gap-1 p-1 mb-2 overflow-y-auto border-l-2 border-black flex-nowrap">
                     <CategoryMenuButton title="Is_Hair_Open" currentCategory={currentCategory} imgIconUrl={iconUrl.hair_icon} isCategoryActive={true} handleClick={()=>setCurrentCategory("Is_Hair_Open")}/>
                     <CategoryMenuButton title="Is_EyeBrow_Open" currentCategory={currentCategory} imgIconUrl={iconUrl.eye_brow_icon} handleClick={()=>setCurrentCategory("Is_EyeBrow_Open")}/>
                     <CategoryMenuButton title="Is_Eyes_Open" currentCategory={currentCategory} imgIconUrl={iconUrl.eyes_icon} handleClick={()=>setCurrentCategory("Is_Eyes_Open")}/>
@@ -532,8 +537,8 @@ function App() {
                    </div>
                    
                    {/* //NOTE menu button  */}
-                    <div className="rounded-md h-44 min-h-full lg:min-h-0 lg:h-5/6 w-full bg-gray-200 ">
-                    <div className="container p-2 flex flex-wrap flex-row gap-1  justify-start align-top items-start">
+                    <div className="w-full min-h-full bg-gray-200 rounded-md h-44 lg:min-h-0 lg:h-5/6 ">
+                    <div className="container flex flex-row flex-wrap items-start justify-start gap-1 p-2 align-top">
                       { is_Hair_Open && hairElement }
                       { is_EyeBrow_Open && eyeBrowElement }
                       { is_Eyes_Open && eyesElement}
