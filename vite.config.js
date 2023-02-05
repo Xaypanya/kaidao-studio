@@ -5,9 +5,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/kaidao-studio/',
-  publicDir: './images',
+  publicDir: './src/public',
+  // root: 'src',
   build: {
     emptyOutDir: true,
-    outDir: './dist/images'
+    outDir: './dist'
   }
 })
