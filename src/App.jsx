@@ -1,9 +1,13 @@
-import { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import CategoryMenuButton from "./components/CategoryMenuButton";
 import GithubButton from "./components/GithubButton";
 import ItemMenuButton from "./components/ItemMenuButton";
 import KaidaoButton from "./components/KaidaoButton";
+import { BG_PREFIX, BG_TYPE, EYES_PREFIX, EYES_TYPE, EYE_BROW_PREFIX, EYE_BROW_TYPE, HAIR_PREFIX, HAIR_TYPE, MOUTH_PREFIX, MOUTH_TYPE, NOSE_PREFIX, NOSE_TYPE, SHIRT_PREFIX, SHIRT_TYPE } from "./constants";
+import { generateSequentialArray } from "./helper";
+import { getFemaleImagePath } from "./helper/getImage";
 import "./index.css"
+
 
 
 const hairUrl = {
@@ -103,6 +107,16 @@ const iconUrl = {
 
 
 function App() {
+  
+  const backgroundCountNumber = generateSequentialArray(3) 
+  const bodyCountNumber = generateSequentialArray(2) 
+  const eyeBrowCountNumber = generateSequentialArray(15) 
+  const eyesCountNumber = generateSequentialArray(13) 
+  const hairCountNumber = generateSequentialArray(12) 
+  const mouthCountNumber = generateSequentialArray(11) 
+  const noseCountNumber = generateSequentialArray(4) 
+  const shirtCountNumber = generateSequentialArray(9) 
+  
 
   const [currentCategory, setCurrentCategory] = useState("")
 
@@ -331,7 +345,7 @@ function App() {
 
         ctx.drawImage(background,((width - background.width)), position);
         ctx.drawImage(body,((width - body.width)), position);
-        if(f_hairPath == hairUrl.hair_4){
+        if(f_hairPath == getFemaleImagePath(HAIR_TYPE, HAIR_PREFIX, 4)){
           ctx.drawImage(shirt,((width - shirt.width)), position);
           ctx.drawImage(hair,((width - hair.width)), position);
         }else{
@@ -377,7 +391,7 @@ function App() {
     svgIcon: <><svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
     </svg></>,
-        title: 'Generate',
+        title: 'ສຸ່ມອັດຕະໂນມັດ',
         handleClick: function(){
             generateFemale();
         }
@@ -386,7 +400,7 @@ function App() {
     svgIcon: <><svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
     </svg></>,
-    title: 'Save',
+    title: 'ບັນທຶກ',
     handleClick: function (){
       saveToDevice();
     }
@@ -397,85 +411,73 @@ function App() {
 
 
   const hairElement = <>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_1} handleClick={()=>set_f_HairPath(hairUrl.hair_1)}/>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_2} handleClick={()=>set_f_HairPath(hairUrl.hair_2)}/>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_3} handleClick={()=>set_f_HairPath(hairUrl.hair_3)}/>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_4} handleClick={()=>set_f_HairPath(hairUrl.hair_4)}/>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_5} handleClick={()=>set_f_HairPath(hairUrl.hair_5)}/>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_6} handleClick={()=>set_f_HairPath(hairUrl.hair_6)}/>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_7} handleClick={()=>set_f_HairPath(hairUrl.hair_7)}/>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_8} handleClick={()=>set_f_HairPath(hairUrl.hair_8)}/>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_9} handleClick={()=>set_f_HairPath(hairUrl.hair_9)}/>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_10} handleClick={()=>set_f_HairPath(hairUrl.hair_10)}/>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_11} handleClick={()=>set_f_HairPath(hairUrl.hair_11)}/>
-                        <ItemMenuButton imgIconUrl={hairUrl.hair_12} handleClick={()=>set_f_HairPath(hairUrl.hair_12)}/>
-  </>
+                {
+                  hairCountNumber.map((orderNum, index)=>(
+                    <React.Fragment key={index}>
+                          <ItemMenuButton imgIconUrl={getFemaleImagePath(HAIR_TYPE, HAIR_PREFIX, orderNum)} handleClick={()=>set_f_HairPath(getFemaleImagePath(HAIR_TYPE, HAIR_PREFIX, orderNum))}/>
+                      </React.Fragment>
+                  ))
+                }
+          </>
 
   const eyeBrowElement = <>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_1} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_1)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_2} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_2)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_3} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_3)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_4} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_4)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_5} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_5)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_6} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_6)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_7} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_7)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_8} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_8)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_9} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_9)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_10} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_10)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_11} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_11)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_12} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_12)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_13} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_13)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_14} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_14)}/>
-                        <ItemMenuButton imgIconUrl={eye_browUrl.eye_brow_15} handleClick={()=>set_f_Eye_BrowPath(eye_browUrl.eye_brow_15)}/>
+                    {
+                    eyeBrowCountNumber.map((orderNum, index)=>(
+                      <React.Fragment key={index}>
+                            <ItemMenuButton imgIconUrl={getFemaleImagePath(EYE_BROW_TYPE, EYE_BROW_PREFIX, orderNum)} handleClick={()=>set_f_Eye_BrowPath(getFemaleImagePath(EYE_BROW_TYPE, EYE_BROW_PREFIX, orderNum))}/>
+                        </React.Fragment>
+                    ))
+                  }
   </>
 
   const eyesElement = <>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_1} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_1)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_2} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_2)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_3} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_3)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_4} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_4)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_5} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_5)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_6} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_6)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_7} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_7)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_8} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_8)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_9} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_9)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_10} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_10)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_11} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_11)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_12} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_12)}/>
-                        <ItemMenuButton imgIconUrl={eyesUrl.eyes_13} handleClick={()=>set_f_EyesPath(eyesUrl.eyes_13)}/>
+                     {
+                    eyesCountNumber.map((orderNum, index)=>(
+                      <React.Fragment key={index}>
+                            <ItemMenuButton imgIconUrl={getFemaleImagePath(EYES_TYPE, EYES_PREFIX, orderNum)} handleClick={()=>set_f_EyesPath(getFemaleImagePath(EYES_TYPE, EYES_PREFIX, orderNum))}/>
+                        </React.Fragment>
+                    ))
+                  }
   </>
 
   const noseElement = <>
-                        <ItemMenuButton imgIconUrl={noseUrl.nose_1} handleClick={()=>set_f_NosePath(noseUrl.nose_1)}/>
-                        <ItemMenuButton imgIconUrl={noseUrl.nose_2} handleClick={()=>set_f_NosePath(noseUrl.nose_2)}/>
-                        <ItemMenuButton imgIconUrl={noseUrl.nose_3} handleClick={()=>set_f_NosePath(noseUrl.nose_3)}/>
-                        <ItemMenuButton imgIconUrl={noseUrl.nose_4} handleClick={()=>set_f_NosePath(noseUrl.nose_4)}/>
+                       {
+                      noseCountNumber.map((orderNum, index)=>(
+                        <React.Fragment key={index}>
+                              <ItemMenuButton imgIconUrl={getFemaleImagePath(NOSE_TYPE, NOSE_PREFIX, orderNum)} handleClick={()=>set_f_NosePath(getFemaleImagePath(NOSE_TYPE, NOSE_PREFIX, orderNum))}/>
+                          </React.Fragment>
+                      ))
+                  }
   </>
 
   const mouthElement = <>
-                        <ItemMenuButton imgIconUrl={mouthUrl.mouth_1} handleClick={()=>set_f_MouthPath(mouthUrl.mouth_1)}/>
-                        <ItemMenuButton imgIconUrl={mouthUrl.mouth_2} handleClick={()=>set_f_MouthPath(mouthUrl.mouth_2)}/>
-                        <ItemMenuButton imgIconUrl={mouthUrl.mouth_3} handleClick={()=>set_f_MouthPath(mouthUrl.mouth_3)}/>
-                        <ItemMenuButton imgIconUrl={mouthUrl.mouth_4} handleClick={()=>set_f_MouthPath(mouthUrl.mouth_4)}/>
-                        <ItemMenuButton imgIconUrl={mouthUrl.mouth_5} handleClick={()=>set_f_MouthPath(mouthUrl.mouth_5)}/>
+                       {
+                      mouthCountNumber.map((orderNum, index)=>(
+                        <React.Fragment key={index}>
+                              <ItemMenuButton imgIconUrl={getFemaleImagePath(MOUTH_TYPE, MOUTH_PREFIX, orderNum)} handleClick={()=>set_f_MouthPath(getFemaleImagePath(MOUTH_TYPE, MOUTH_PREFIX, orderNum))}/>
+                          </React.Fragment>
+                      ))
+                  }
   </>
 
   const shirtElement = <>
-                        <ItemMenuButton imgIconUrl={shirtUrl.shirt_1} handleClick={()=>set_f_ShirtPath(shirtUrl.shirt_1)}/>
-                        <ItemMenuButton imgIconUrl={shirtUrl.shirt_2} handleClick={()=>set_f_ShirtPath(shirtUrl.shirt_2)}/>
-                        <ItemMenuButton imgIconUrl={shirtUrl.shirt_3} handleClick={()=>set_f_ShirtPath(shirtUrl.shirt_3)}/>
-                        <ItemMenuButton imgIconUrl={shirtUrl.shirt_4} handleClick={()=>set_f_ShirtPath(shirtUrl.shirt_4)}/>
-                        <ItemMenuButton imgIconUrl={shirtUrl.shirt_5} handleClick={()=>set_f_ShirtPath(shirtUrl.shirt_5)}/>
-                        <ItemMenuButton imgIconUrl={shirtUrl.shirt_6} handleClick={()=>set_f_ShirtPath(shirtUrl.shirt_6)}/>
-                        <ItemMenuButton imgIconUrl={shirtUrl.shirt_7} handleClick={()=>set_f_ShirtPath(shirtUrl.shirt_7)}/>
-                        <ItemMenuButton imgIconUrl={shirtUrl.shirt_8} handleClick={()=>set_f_ShirtPath(shirtUrl.shirt_8)}/>
-                        <ItemMenuButton imgIconUrl={shirtUrl.shirt_9} handleClick={()=>set_f_ShirtPath(shirtUrl.shirt_9)}/>
+                       {
+                            shirtCountNumber.map((orderNum, index)=>(
+                          <React.Fragment key={index}>
+                                <ItemMenuButton imgIconUrl={getFemaleImagePath(SHIRT_TYPE, SHIRT_PREFIX, orderNum)} handleClick={()=>set_f_ShirtPath(getFemaleImagePath(SHIRT_TYPE, SHIRT_PREFIX, orderNum))}/>
+                            </React.Fragment>
+                        ))
+                    }   
   </>
 
   const backgroundElement = <>
-                        <ItemMenuButton imgIconUrl={backgroundUrl.background_1} handleClick={()=>set_f_BackgroundPath(backgroundUrl.background_1)}/>
-                        <ItemMenuButton imgIconUrl={backgroundUrl.background_2} handleClick={()=>set_f_BackgroundPath(backgroundUrl.background_2)}/>
-                        <ItemMenuButton imgIconUrl={backgroundUrl.background_3} handleClick={()=>set_f_BackgroundPath(backgroundUrl.background_3)}/>
+                                               {
+                            backgroundCountNumber.map((orderNum, index)=>(
+                            <React.Fragment key={index}>
+                                  <ItemMenuButton imgIconUrl={getFemaleImagePath(BG_TYPE, BG_PREFIX, orderNum)} handleClick={()=>set_f_BackgroundPath(getFemaleImagePath(BG_TYPE, BG_PREFIX, orderNum))}/>
+                              </React.Fragment>
+                          ))
+                        }
   </>
 
 
@@ -491,8 +493,8 @@ function App() {
             <div className="flex">
                 <GithubButton/>
                 <ul className="hidden gap-4 lg:flex">
-                  <li><a href="#" className="font-serif">Our Team</a></li>
-                  <li><a href="#" className="font-serif">Social Media</a></li>
+                  <li><a href="#" className="font-sans font-bold">ທີມງານ</a></li>
+                  <li><a href="#" className="font-sans font-bold">ຕິດຕາມ</a></li>
                 </ul>
 
                 <button className="lg:hidden">
