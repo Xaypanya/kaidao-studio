@@ -3,8 +3,6 @@ import React from 'react'
 export default function CategoryMenuButton(props) {
   const {title, imgIconUrl, handleClick, isCategoryActive, currentCategory } = props;
 
-  console.log("current category ==> ", currentCategory)
-  console.log("title ==> ", title)
 
   return (
     <>
