@@ -3,95 +3,11 @@ import CategoryMenuButton from "./components/CategoryMenuButton";
 import GithubButton from "./components/GithubButton";
 import ItemMenuButton from "./components/ItemMenuButton";
 import KaidaoButton from "./components/KaidaoButton";
-import { BG_PREFIX, BG_TYPE, EYES_PREFIX, EYES_TYPE, EYE_BROW_PREFIX, EYE_BROW_TYPE, HAIR_PREFIX, HAIR_TYPE, MOUTH_PREFIX, MOUTH_TYPE, NOSE_PREFIX, NOSE_TYPE, SHIRT_PREFIX, SHIRT_TYPE } from "./constants";
+import { BG_PREFIX, BG_TYPE, BODY_PREFIX, BODY_TYPE, EYES_PREFIX, EYES_TYPE, EYE_BROW_PREFIX, EYE_BROW_TYPE, HAIR_PREFIX, HAIR_TYPE, MOUTH_PREFIX, MOUTH_TYPE, NOSE_PREFIX, NOSE_TYPE, SHIRT_PREFIX, SHIRT_TYPE } from "./constants";
 import { generateSequentialArray } from "./helper";
 import { getFemaleImagePath } from "./helper/getImage";
 import "./index.css"
 
-
-
-const hairUrl = {
-  hair_1: "/images/female/hair/h (1).png",
-  hair_2: "/images/female/hair/h (2).png",
-  hair_3: "/images/female/hair/h (3).png",
-  hair_4: "/images/female/hair/h (4).png",
-  hair_5: "/images/female/hair/h (5).png",
-  hair_6: "/images/female/hair/h (6).png",
-  hair_7: "/images/female/hair/h (7).png",
-  hair_8: "/images/female/hair/h (8).png",
-  hair_9: "/images/female/hair/h (9).png",
-  hair_10: "/images/female/hair/h (10).png",
-  hair_11: "/images/female/hair/h (11).png",
-  hair_12: "/images/female/hair/h (12).png",
-}
-const bodyUrl = {
-  body_1: "/images/female/body/b (1).png",
-  body_2: "/images/female/body/b (2).png"
-}
-const eye_browUrl = {
-  eye_brow_1: "/images/female/eye_brow/eb (1).png",
-  eye_brow_2: "/images/female/eye_brow/eb (2).png",
-  eye_brow_3: "/images/female/eye_brow/eb (3).png",
-  eye_brow_4: "/images/female/eye_brow/eb (4).png",
-  eye_brow_5: "/images/female/eye_brow/eb (5).png",
-  eye_brow_6: "/images/female/eye_brow/eb (6).png",
-  eye_brow_7: "/images/female/eye_brow/eb (7).png",
-  eye_brow_8: "/images/female/eye_brow/eb (8).png",
-  eye_brow_9: "/images/female/eye_brow/eb (9).png",
-  eye_brow_10: "/images/female/eye_brow/eb (10).png",
-  eye_brow_11: "/images/female/eye_brow/eb (11).png",
-  eye_brow_12: "/images/female/eye_brow/eb (12).png",
-  eye_brow_13: "/images/female/eye_brow/eb (13).png",
-  eye_brow_14: "/images/female/eye_brow/eb (14).png",
-  eye_brow_15: "/images/female/eye_brow/eb (15).png",
-}
-const eyesUrl = {
-  eyes_1: "/images/female/eyes/e (1).png",
-  eyes_2: "/images/female/eyes/e (2).png",
-  eyes_3: "/images/female/eyes/e (3).png",
-  eyes_4: "/images/female/eyes/e (4).png",
-  eyes_5: "/images/female/eyes/e (5).png",
-  eyes_6: "/images/female/eyes/e (6).png",
-  eyes_7: "/images/female/eyes/e (7).png",
-  eyes_8: "/images/female/eyes/e (8).png",
-  eyes_9: "/images/female/eyes/e (9).png",
-  eyes_10: "/images/female/eyes/e (10).png",
-  eyes_11: "/images/female/eyes/e (11).png",
-  eyes_12: "/images/female/eyes/e (12).png",
-  eyes_13: "/images/female/eyes/e (13).png",
-}
-const noseUrl = {
-  nose_1: "/images/female/nose/n (1).png",
-  nose_2: "/images/female/nose/n (2).png",
-  nose_3: "/images/female/nose/n (3).png",
-  nose_4: "/images/female/nose/n (4).png",
-}
-const mouthUrl = {
-  mouth_1: "/images/female/mouth/m (1).png",
-  mouth_2: "/images/female/mouth/m (2).png",
-  mouth_3: "/images/female/mouth/m (3).png",
-  mouth_4: "/images/female/mouth/m (4).png",
-  mouth_5: "/images/female/mouth/m (5).png",
-}
-const backgroundUrl = {
-  background_1: "/images/female/background/bg (1).png",
-  background_2: "/images/female/background/bg (2).png",
-  background_3: "/images/female/background/bg (3).png",
-}
-const shirtUrl = {
-  shirt_1: "/images/female/shirt/sh (1).png",
-  shirt_2: "/images/female/shirt/sh (2).png",
-  shirt_3: "/images/female/shirt/sh (3).png",
-  shirt_4: "/images/female/shirt/sh (4).png",
-  shirt_5: "/images/female/shirt/sh (5).png",
-  shirt_6: "/images/female/shirt/sh (6).png",
-  shirt_7: "/images/female/shirt/sh (7).png",
-  shirt_8: "/images/female/shirt/sh (8).png",
-  shirt_9: "/images/female/shirt/sh (9).png",
-  shirt_10: "/images/female/shirt/sh (10).png",
-  shirt_11: "/images/female/shirt/sh (11).png",
-}
-  
 
 const iconUrl = {
   hair_icon: "/images/icon/hair-icon.png",
@@ -108,14 +24,23 @@ const iconUrl = {
 
 function App() {
   
-  const backgroundCountNumber = generateSequentialArray(3) 
-  const bodyCountNumber = generateSequentialArray(2) 
-  const eyeBrowCountNumber = generateSequentialArray(15) 
-  const eyesCountNumber = generateSequentialArray(13) 
-  const hairCountNumber = generateSequentialArray(12) 
-  const mouthCountNumber = generateSequentialArray(11) 
-  const noseCountNumber = generateSequentialArray(4) 
-  const shirtCountNumber = generateSequentialArray(9) 
+  const backgroundCountArray = generateSequentialArray(3) 
+  const bodyCountArray = generateSequentialArray(2) 
+  const eyeBrowCountArray = generateSequentialArray(15) 
+  const eyesCountArray = generateSequentialArray(13) 
+  const hairCountArray = generateSequentialArray(12) 
+  const mouthCountArray = generateSequentialArray(11) 
+  const noseCountArray = generateSequentialArray(4) 
+  const shirtCountArray = generateSequentialArray(9) 
+
+  //NOTE total item count
+  const f_hair__count = hairCountArray.length;
+  const f_eye_brow__count = eyeBrowCountArray.length;
+  const f_eyes__count = eyesCountArray.length;
+  const f_nose__count = noseCountArray.length;
+  const f_mouth__count = mouthCountArray.length;
+  const f_shirt__count = shirtCountArray.length;
+  const f_background__count = backgroundCountArray.length;
   
 
   const [currentCategory, setCurrentCategory] = useState("")
@@ -133,14 +58,14 @@ function App() {
 
   const [isFemaleGender, setIsFemaleGender] = useState(true);
   //NOTE current item selected url  logic
-  const [f_hairPath, set_f_HairPath] = useState(f_hairPath_Persistant ? f_hairPath_Persistant : hairUrl.hair_1)
-  const [f_eye_browPath, set_f_Eye_BrowPath] = useState(f_eye_browPath_Persistant ? f_eye_browPath_Persistant : eye_browUrl.eye_brow_1)
-  const [f_eyesPath, set_f_EyesPath] = useState(f_eyesPath_Persistant ? f_eyesPath_Persistant : eyesUrl.eyes_1)
-  const [f_nosePath, set_f_NosePath] = useState(f_nosePath_Persistant ? f_nosePath_Persistant : noseUrl.nose_1)
-  const [f_bodyPath, set_f_BodyPath] = useState(f_bodyPath_Persistant ? f_bodyPath_Persistant :  bodyUrl.body_2)
-  const [f_shirtPath, set_f_ShirtPath] = useState(f_shirtPath_Persistant ? f_shirtPath_Persistant : shirtUrl.shirt_1)
-  const [f_mouthPath, set_f_MouthPath] = useState(f_mouthPath_Persistant ? f_mouthPath_Persistant : mouthUrl.mouth_1)
-  const [f_backgroundPath, set_f_BackgroundPath] = useState(backgroundUrl.background_1)
+  const [f_hairPath, set_f_HairPath] = useState(f_hairPath_Persistant ? f_hairPath_Persistant : getFemaleImagePath(HAIR_TYPE, HAIR_PREFIX, 1))
+  const [f_eye_browPath, set_f_Eye_BrowPath] = useState(f_eye_browPath_Persistant ? f_eye_browPath_Persistant : getFemaleImagePath(EYE_BROW_TYPE, EYE_BROW_PREFIX, 1))
+  const [f_eyesPath, set_f_EyesPath] = useState(f_eyesPath_Persistant ? f_eyesPath_Persistant : getFemaleImagePath(EYES_TYPE, EYES_PREFIX, 1))
+  const [f_nosePath, set_f_NosePath] = useState(f_nosePath_Persistant ? f_nosePath_Persistant : getFemaleImagePath(NOSE_TYPE, NOSE_PREFIX, 1))
+  const [f_bodyPath, set_f_BodyPath] = useState(f_bodyPath_Persistant ? f_bodyPath_Persistant :  getFemaleImagePath(BODY_TYPE, BODY_PREFIX, 2))
+  const [f_shirtPath, set_f_ShirtPath] = useState(f_shirtPath_Persistant ? f_shirtPath_Persistant : getFemaleImagePath(SHIRT_TYPE, SHIRT_PREFIX, 1))
+  const [f_mouthPath, set_f_MouthPath] = useState(f_mouthPath_Persistant ? f_mouthPath_Persistant : getFemaleImagePath(MOUTH_TYPE, MOUTH_PREFIX, 1))
+  const [f_backgroundPath, set_f_BackgroundPath] = useState(getFemaleImagePath(BG_TYPE, BG_PREFIX, 1))
 
   //NOTE category button logic
   const [is_Hair_Open, setIs_Hair_Open] = useState(true)
@@ -156,14 +81,7 @@ function App() {
   //NOTE get canvas element tag
   const canvasRef = useRef(null)
 
-  //NOTE total item count
-  const f_hair__count = 12;
-  const f_eye_brow__count = 15;
-  const f_eyes__count = 13;
-  const f_nose__count = 4;
-  const f_mouth__count = 11;
-  const f_shirt__count = 9;
-  const f_background__count = 3;
+
 
   useEffect(()=>{
     handleCategory(currentCategory)
@@ -224,15 +142,15 @@ function App() {
     var eye_brow_rdn = Math.floor(Math.random()*f_eye_brow__count)+1;
     var background_rdn = Math.floor(Math.random()*f_background__count)+1;
 
-    set_f_HairPath("/images/female/hair/h ("+ hair_rdn+").png")
-    set_f_ShirtPath("/images/female/shirt/sh ("+shirt_rdn+").png")
-    set_f_EyesPath("/images/female/eyes/e ("+eyes_rdn+").png")
-    set_f_MouthPath("/images/female/mouth/m ("+mouth_rdn+").png")
-    set_f_NosePath("/images/female/nose/n ("+nose_rdn+").png")
-    set_f_Eye_BrowPath("/images/female/eye_brow/eb ("+eye_brow_rdn+").png")
+    set_f_HairPath(getFemaleImagePath(HAIR_TYPE, HAIR_PREFIX, hair_rdn))
+    set_f_ShirtPath(getFemaleImagePath(SHIRT_TYPE, SHIRT_PREFIX, shirt_rdn))
+    set_f_EyesPath(getFemaleImagePath(EYES_TYPE, EYES_PREFIX, eyes_rdn))
+    set_f_MouthPath(getFemaleImagePath(MOUTH_TYPE, MOUTH_PREFIX, mouth_rdn))
+    set_f_NosePath(getFemaleImagePath(NOSE_TYPE, NOSE_PREFIX, nose_rdn))
+    set_f_Eye_BrowPath(getFemaleImagePath(EYE_BROW_TYPE, EYE_BROW_PREFIX, eye_brow_rdn))
     // set_f_BackgroundPath("/images/female/background/bg ("+background_rdn+").png")
-    set_f_BackgroundPath("/images/female/background/bg (1).png")
-    set_f_BodyPath("/images/female/body/b (2).png")
+    set_f_BackgroundPath(getFemaleImagePath(BG_TYPE, BG_PREFIX, 1))
+    set_f_BodyPath(getFemaleImagePath(BODY_TYPE, BODY_PREFIX, 2))
 
 
     var hair = new Image();
@@ -283,7 +201,7 @@ function App() {
 
         ctx.drawImage(background,((width - background.width)), position);
         ctx.drawImage(body,((width - body.width)), position);
-        if(f_hairPath == hairUrl.hair_4){
+        if(f_hairPath == getFemaleImagePath(HAIR_TYPE, HAIR_PREFIX, 4)){
           ctx.drawImage(shirt,((width - shirt.width)), position);
           ctx.drawImage(hair,((width - hair.width)), position);
         }else{
@@ -412,7 +330,7 @@ function App() {
 
   const hairElement = <>
                 {
-                  hairCountNumber.map((orderNum, index)=>(
+                  hairCountArray.map((orderNum, index)=>(
                     <React.Fragment key={index}>
                           <ItemMenuButton imgIconUrl={getFemaleImagePath(HAIR_TYPE, HAIR_PREFIX, orderNum)} handleClick={()=>set_f_HairPath(getFemaleImagePath(HAIR_TYPE, HAIR_PREFIX, orderNum))}/>
                       </React.Fragment>
@@ -422,7 +340,7 @@ function App() {
 
   const eyeBrowElement = <>
                     {
-                    eyeBrowCountNumber.map((orderNum, index)=>(
+                    eyeBrowCountArray.map((orderNum, index)=>(
                       <React.Fragment key={index}>
                             <ItemMenuButton imgIconUrl={getFemaleImagePath(EYE_BROW_TYPE, EYE_BROW_PREFIX, orderNum)} handleClick={()=>set_f_Eye_BrowPath(getFemaleImagePath(EYE_BROW_TYPE, EYE_BROW_PREFIX, orderNum))}/>
                         </React.Fragment>
@@ -432,7 +350,7 @@ function App() {
 
   const eyesElement = <>
                      {
-                    eyesCountNumber.map((orderNum, index)=>(
+                    eyesCountArray.map((orderNum, index)=>(
                       <React.Fragment key={index}>
                             <ItemMenuButton imgIconUrl={getFemaleImagePath(EYES_TYPE, EYES_PREFIX, orderNum)} handleClick={()=>set_f_EyesPath(getFemaleImagePath(EYES_TYPE, EYES_PREFIX, orderNum))}/>
                         </React.Fragment>
@@ -442,7 +360,7 @@ function App() {
 
   const noseElement = <>
                        {
-                      noseCountNumber.map((orderNum, index)=>(
+                      noseCountArray.map((orderNum, index)=>(
                         <React.Fragment key={index}>
                               <ItemMenuButton imgIconUrl={getFemaleImagePath(NOSE_TYPE, NOSE_PREFIX, orderNum)} handleClick={()=>set_f_NosePath(getFemaleImagePath(NOSE_TYPE, NOSE_PREFIX, orderNum))}/>
                           </React.Fragment>
@@ -452,7 +370,7 @@ function App() {
 
   const mouthElement = <>
                        {
-                      mouthCountNumber.map((orderNum, index)=>(
+                      mouthCountArray.map((orderNum, index)=>(
                         <React.Fragment key={index}>
                               <ItemMenuButton imgIconUrl={getFemaleImagePath(MOUTH_TYPE, MOUTH_PREFIX, orderNum)} handleClick={()=>set_f_MouthPath(getFemaleImagePath(MOUTH_TYPE, MOUTH_PREFIX, orderNum))}/>
                           </React.Fragment>
@@ -462,7 +380,7 @@ function App() {
 
   const shirtElement = <>
                        {
-                            shirtCountNumber.map((orderNum, index)=>(
+                            shirtCountArray.map((orderNum, index)=>(
                           <React.Fragment key={index}>
                                 <ItemMenuButton imgIconUrl={getFemaleImagePath(SHIRT_TYPE, SHIRT_PREFIX, orderNum)} handleClick={()=>set_f_ShirtPath(getFemaleImagePath(SHIRT_TYPE, SHIRT_PREFIX, orderNum))}/>
                             </React.Fragment>
@@ -472,7 +390,7 @@ function App() {
 
   const backgroundElement = <>
                                                {
-                            backgroundCountNumber.map((orderNum, index)=>(
+                            backgroundCountArray.map((orderNum, index)=>(
                             <React.Fragment key={index}>
                                   <ItemMenuButton imgIconUrl={getFemaleImagePath(BG_TYPE, BG_PREFIX, orderNum)} handleClick={()=>set_f_BackgroundPath(getFemaleImagePath(BG_TYPE, BG_PREFIX, orderNum))}/>
                               </React.Fragment>
