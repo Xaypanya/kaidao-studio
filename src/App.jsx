@@ -8,7 +8,6 @@ import { generateSequentialArray } from "./helper";
 import { getFemaleImagePath } from "./helper/getImage";
 import "./index.css"
 
-
 const iconUrl = {
   hair_icon: "/images/icon/hair-icon.png",
   shirt_icon: "/images/icon/shirt-icon.png",
@@ -18,9 +17,6 @@ const iconUrl = {
   eye_brow_icon: "/images/icon/eyebrow-icon.png",
   background_icon: "/images/icon/background-icon.png"
 }
-
-
-
 
 function App() {
   
