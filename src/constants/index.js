@@ -19,6 +19,9 @@ const NOSE_TYPE = "nose"
 const SHIRT_TYPE = "shirt"
 
 
+const FB_KAIDAO = "https://www.facebook.com/K4IDAODEV"
+
+
 export  {
     //Export Prefix
     BG_PREFIX,
@@ -38,5 +41,5 @@ export  {
     MOUTH_TYPE,
     NOSE_TYPE,
     SHIRT_TYPE,
-
+    FB_KAIDAO
 };

@@ -3,7 +3,7 @@ import CategoryMenuButton from "./components/CategoryMenuButton";
 import GithubButton from "./components/GithubButton";
 import ItemMenuButton from "./components/ItemMenuButton";
 import KaidaoButton from "./components/KaidaoButton";
-import { BG_PREFIX, BG_TYPE, BODY_PREFIX, BODY_TYPE, EYES_PREFIX, EYES_TYPE, EYE_BROW_PREFIX, EYE_BROW_TYPE, HAIR_PREFIX, HAIR_TYPE, MOUTH_PREFIX, MOUTH_TYPE, NOSE_PREFIX, NOSE_TYPE, SHIRT_PREFIX, SHIRT_TYPE } from "./constants";
+import { BG_PREFIX, BG_TYPE, BODY_PREFIX, BODY_TYPE, EYES_PREFIX, EYES_TYPE, EYE_BROW_PREFIX, EYE_BROW_TYPE, FB_KAIDAO, HAIR_PREFIX, HAIR_TYPE, MOUTH_PREFIX, MOUTH_TYPE, NOSE_PREFIX, NOSE_TYPE, SHIRT_PREFIX, SHIRT_TYPE } from "./constants";
 import { generateSequentialArray } from "./helper";
 import { getFemaleImagePath } from "./helper/getImage";
 import "./index.css"
@@ -407,8 +407,8 @@ function App() {
             <div className="flex">
                 <GithubButton/>
                 <ul className="hidden gap-4 lg:flex">
-                  <li><a href="#" className="font-sans font-bold">ທີມງານ</a></li>
-                  <li><a href="#" className="font-sans font-bold">ຕິດຕາມ</a></li>
+                  {/* <li><a href="#" className="font-sans font-bold">ທີມງານ</a></li> */}
+                  <li><a href={FB_KAIDAO} className="font-sans font-bold">ຕິດຕາມ</a></li>
                 </ul>
 
                 <button className="lg:hidden">
