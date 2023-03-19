@@ -9,6 +9,7 @@ export default defineConfig({
   // root: 'src',
   build: {
     emptyOutDir: true,
-    outDir: './dist'
+    outDir: './dist',
+    assetsInclude: ['images/**/*']
   }
 })
