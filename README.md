@@ -15,7 +15,7 @@ kaidao studio is a free avatar generator app.
 
 ## Demo
 
-You can preview [Demo](xaypanya.github.io/kaidao-studio) here
+You can preview [Demo](https://kaidao-studio.com) here
 
 
 
